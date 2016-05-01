@@ -1,5 +1,5 @@
-import React from 'react';
-import Relay from 'react-relay';
+import React from 'react'
+import Relay from 'react-relay'
 
 class App extends React.Component {
   render() {
@@ -12,7 +12,7 @@ class App extends React.Component {
           )}
         </ul>
       </div>
-    );
+    )
   }
 }
 
@@ -24,11 +24,11 @@ export default Relay.createContainer(App, {
           edges {
             node {
               id,
-              name,
-            },
-          },
-        },
+              name
+            }
+          }
+        }
       }
-    `,
-  },
-});
+    `
+  }
+})

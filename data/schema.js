@@ -17,7 +17,7 @@ import {
   GraphQLObjectType,
   GraphQLSchema,
   GraphQLString,
-} from 'graphql';
+} from 'graphql'
 
 import {
   connectionArgs,
@@ -27,7 +27,7 @@ import {
   globalIdField,
   mutationWithClientMutationId,
   nodeDefinitions,
-} from 'graphql-relay';
+} from 'graphql-relay'
 
 import {
   // Import methods that your schema can use to interact with your database
