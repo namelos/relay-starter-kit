@@ -1,11 +1,11 @@
 import React from 'react'
-import Relay from 'react-relay'
-import ReactDOM from 'react-dom'
+import Relay, { Route, createContainer, RootContainer } from 'react-relay'
+import { render } from 'react-dom'
 
-let HelloApp = ({ greetings }) =>
-  <h1>{ greetings.hello }</h1>
+let HelloApp = ({ greetings: { hello } }) =>
+  <h1>{hello}</h1>
 
-HelloApp = Relay.createContainer(HelloApp, {
+HelloApp = createContainer(HelloApp, {
   fragments: {
     greetings: () => Relay.QL`
       fragment on Greetings {
@@ -15,36 +15,20 @@ HelloApp = Relay.createContainer(HelloApp, {
   }
 })
 
-class HelloRoute extends Relay.Route {
+class HelloRoute extends Route {
   static routeName = 'Hello'
   static queries = {
-    greetings: Component => Relay.QL`
+    greetings: (Component) => Relay.QL`
       query GreetingsQuery {
         greetings {
-          ${Component.getFragment('greetings')}
-        }
+          ${Component.getFragment('greetings')},
+        },
       }
     `
   }
 }
 
-ReactDOM.render(
-  <Relay.RootContainer Component={HelloApp} route={new HelloRoute()}/>,
+render(
+  <RootContainer Component={HelloApp} route={new HelloRoute()}/>,
   document.getElementById('root')
 )
-
-// import 'babel-polyfill'
-//
-// import App from './components/App'
-// import AppHomeRoute from './routes/AppHomeRoute'
-// import React from 'react'
-// import ReactDOM from 'react-dom'
-// import Relay from 'react-relay'
-//
-// ReactDOM.render(
-//   <Relay.RootContainer
-//     Component={App}
-//     route={new AppHomeRoute()}
-//   />,
-//   document.getElementById('root')
-// )
